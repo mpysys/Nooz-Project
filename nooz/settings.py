@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-orkg9gfn6^&p^4kjw*y6n4eae!n(v@o8v=p7wwgxb9(6f958fk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-mpysys-noozproject-vkhc75dfu7v.ws-us71.gitpod.io']
+ALLOWED_HOSTS = ['localhost', '.gitpod.io']
 
 # Application definition
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'nooz2',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'nooz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [Path.joinpath(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
