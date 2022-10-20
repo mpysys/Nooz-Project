@@ -12,6 +12,10 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-timestamp']
 
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats)
+    return render(request, 'categories.html', {'cats':cats.title(), 'category_posts':category_posts})
+
 
 class PostDetailView(DetailView):
     model = Post
