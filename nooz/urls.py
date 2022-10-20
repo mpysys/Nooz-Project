@@ -19,4 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('nooz2.urls')),
+    path('subs/', include('django.contrib.auth.urls')),
+    path('subs/', include('subs.urls')),
+
 ]
