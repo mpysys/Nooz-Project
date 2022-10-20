@@ -2,11 +2,13 @@
 {% block title %}Delete the post{% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
 <h1>Delete Post...</h1>
 <br/><br/>
 <h3>Delete: {{ post.title }}</h3>
 
 <br/>
+
 <div class="form-group">
     <form method ='POST'>
         {% csrf_token %}
@@ -14,5 +16,10 @@
             <button type='submit' class='btn btn-secondary'>Delete Post</button>
     </form>
 </div>
+{% else %}
+
+User permission denied
+
+{% endif %}
 
 {% endblock %}
