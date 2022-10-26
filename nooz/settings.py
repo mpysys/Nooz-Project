@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'nooz2',
     'subs',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
