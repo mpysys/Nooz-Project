@@ -10,7 +10,7 @@ from ckeditor.fields import RichTextField
 class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255)
-    description = models.CharField(max_length=50, default='Click above to read more')
+    description = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     #body = models.TextField()
