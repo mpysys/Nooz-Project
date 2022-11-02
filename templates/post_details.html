@@ -25,10 +25,6 @@
     {% endif %}
     {{ post.body|safe }}
 
-    <br/><br/>
-    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-
-    <br/><br/>
     <hr>
     <br/>
     <form action="{% url 'like_post' post.pk %}" method="POST">
@@ -48,6 +44,25 @@
     </form>
 
 <br/><br/>
+<h2>Comments...</h2>
+<br/>
+{% if not post.comments.all %}
+    No Comments. <a href="#">Add one below...</a>
+{% else %}
+    {% for comment in post.comments.all %}
+      <small><strong>  
+        {{ comment.name }} - 
+          {{ comment.timestamp }}
+      </strong></small>
+      <br/>
+      {{ comment.body }}
+      <br/>
+      <hr>
+    {% endfor %}
+{% endif %}
+
+<br/><br/>
+
 <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-2">
