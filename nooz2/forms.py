@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from .models import Post, Category
+from .models import Post, Category, Comment
 
 # MAX_POST_LENGTH = settings.MAX_POST_LENGTH
 
@@ -44,3 +44,14 @@ class EditForm(forms.ModelForm):
     #  if len(content) > MAX_POST_LENGTH:
     #     raise forms.ValidationError("This message is too long")
     #return content
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'body']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }

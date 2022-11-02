@@ -23,8 +23,9 @@
     {% if post.header_image %}
         <img src="{{ post.header_image.url }}" height="300" width="300">
     {% endif %}
+    <br/><br/>
     {{ post.body|safe }}
-
+    <br/>
     <hr>
     <br/>
     <form action="{% url 'like_post' post.pk %}" method="POST">
@@ -43,31 +44,16 @@
         - {{ total_likes }} Likes
     </form>
 
-<br/><br/>
-<h2>Comments...</h2>
 <br/>
-{% if not post.comments.all %}
-    No Comments. <a href="#">Add one below...</a>
-{% else %}
-    {% for comment in post.comments.all %}
-      <small><strong>  
-        {{ comment.name }} - 
-          {{ comment.timestamp }}
-      </strong></small>
-      <br/>
-      {{ comment.body }}
-      <br/>
-      <hr>
-    {% endfor %}
-{% endif %}
+<hr>
+<br/>
 
-<br/><br/>
 
 <div class="card mb-3">
     <div class="row g-0">
-      <div class="col-md-2">
+      <div class="col-md-1">
         {% if post.author.profile.profile_pic %}
-          <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start">
+          <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start" height="100" width="100">
         {% else %}
           <img src="{% static '/images/generic_pic.png' %}" class="img-fluid rounded-start">
         {% endif %}
@@ -102,5 +88,26 @@
     </div>
   </div>
 
+  <br/><br/>
+<h2>Comments...</h2>
+<br/>
+{% if not post.comments.all %}
+    No Comments. <a href="{% url 'add_comment' post.pk %}">Add one below...</a>
+{% else %}
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+<br/><br/>
+    {% for comment in post.comments.all %}
+      <small><strong>  
+        {{ comment.name }} - 
+          {{ comment.timestamp }}
+      </strong></small>
+      <br/>
+      {{ comment.body }}
+      <br/>
+      <hr>
+    {% endfor %}
+{% endif %}
 
+<br/><br/>
+<br/><br/>
 {% endblock %}
