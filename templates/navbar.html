@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'home' %}">Nooz</a>
@@ -43,6 +44,13 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">  
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {% if user.profile.profile_pic %}
+            <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle border"
+            height="25" alt="Avatar" loading="lazy" />
+          {% else %}
+            <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+            height="25" alt="Avatar" loading="lazy" />
+          {% endif %}
             {{ user.username}}
           </a>
           <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end">

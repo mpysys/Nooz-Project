@@ -1,26 +1,61 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
-<h1>Post</h1>
 
-{% for post in object_list %}
-   <li><a href="{% url 'category' post.category|slugify|title %}">[{{ post.category }}]</a> - <a href="{% url 'post-detail' post.pk %}">{{ post.title}}</a> -
-    {{ post.author.first_name }} 
-    {{ post.author.last_name }} -
-    {{ post.timestamp }}
 
-    {% if user.is_authenticated %}
-        {% if user.id == post.author.id %}
-            - <small>
-                <a href="{% url 'edit_post' post.pk %}">(edit)</a>
-                <a href="{% url 'delete_post' post.pk %}">(delete)</a>
-            </small>
-        {% endif %}
-    {% endif %}
-<br/>
-    {{ post.description }}
-</li>
-{% endfor %}
+<div class="card d-flex justify-content-center">
+    <div class="border border-left border-right px-0">
+      <div class="p-3 border-bottom">
+        <h1 class="d-flex align-items-center mb-0">
+          Home
+        </h1>
+      </div>
+      <div>
+        {% for post in object_list %}
+        <div>
+          <div class="d-flex p-3 border-bottom">
+            {% if post.author.profile.profile_pic %}
+            <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
+              height="50" alt="Avatar" loading="lazy" />
+            {% else %}
+            <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+            height="50" alt="Avatar" loading="lazy" />
+            {% endif %}
+            <div class="d-flex w-100 ps-3">
+              <div>
+                <h6 class="text-body">
+                    <small><a href="{% url 'show_profile_page' user.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                    <span class="small text-muted font-weight-normal"> • </span>
+                    <span class="small text-muted font-weight-normal">{{ post.timestamp }}</span>
+                    </small>
+                    {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                        - <small >
+                            <a href="{% url 'edit_post' post.pk %}">(edit)</a>
+                            <a href="{% url 'delete_post' post.pk %}">(delete)</a>
+                        </small>
+                    {% endif %}
+                    {% endif %}  
+                </h6>
+                <div><strong><a href="{% url 'post-detail' post.pk %}" class="link-dark">{{ post.title}}</a></strong></div>
+
+                <p style="line-height: 1.2;">
+                    {{ post.description }}
+                </p>
+                <ul class="list-unstyled d-flex float-start mb-0 pe-xl-5">
+                  <li><a href="{% url 'category' post.category|slugify|title %}" class="badge bg-secondary mx-1" style="text-decoration: none">{{ post.category }}</a></li>
+                  <li><span class="small ps-2 float-right">Likes: {{ post.total_likes }}</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
 
 {% endblock %}
