@@ -25,7 +25,7 @@
             <div class="d-flex w-100 ps-3">
               <div>
                 <h6 class="text-body">
-                    <small><a href="{% url 'show_profile_page' user.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                    <small><a href="{% url 'show_profile_page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
                     <span class="small text-muted font-weight-normal"> • </span>
                     <span class="small text-muted font-weight-normal">{{ post.timestamp }}</span>
                     </small>
