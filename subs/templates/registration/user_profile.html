@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 
-<h1>User Profile</h1>
-{{ page_user }}
+<h1>{{ page_user.user.first_name }} {{page_user.user.last_name }}'s Profile</h1>
+
 <br/><br/>
 
 <div class="card mb-3">
