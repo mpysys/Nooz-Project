@@ -46,10 +46,10 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {% if user.profile.profile_pic %}
             <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle border"
-            height="25" alt="Avatar" loading="lazy" />
+            height="25" width= "25" alt="Avatar" loading="lazy" />
           {% else %}
             <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
-            height="25" alt="Avatar" loading="lazy" />
+            height="25" with="25" alt="Avatar" loading="lazy" />
           {% endif %}
             {{ user.username}}
           </a>

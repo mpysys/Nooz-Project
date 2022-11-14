@@ -23,6 +23,8 @@ class UserEditView(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
+        
+
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordUpdateForm
