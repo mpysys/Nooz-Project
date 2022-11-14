@@ -3,7 +3,7 @@
 {% block content %}
 
 
-
+{% if user.is_authenticated %}
 <div class="card d-flex justify-content-center">
     <div class="border border-left border-right px-0">
       <div class="p-3 border-bottom">
@@ -55,7 +55,18 @@
       </div>
     </div>
   </div>
-
-
-
+  {% else %}
+  <p class="fs-5 mb-4 text-white text-center text-md-start">Welcome to Fungi News. A place to get the
+    latest update and trendy news about NFT, where you also have the opportunity to share your NFT
+    enthusiasm with others like you.
+</p>
+<div class="gap-3 d-flex justify-content-center justify-content-md-start">
+    <a href="{% url 'register' %}" role="button" class="btn btn-info btn-lg px-4 me-sm-3 fw-bold">
+        Sign Up
+    </a>
+    <a href="{% url 'login' %}" role="button" class="btn btn-outline-light btn-lg px-4 fw-bold">
+        Login
+    </a>
+</div>
+{% endif %}
 {% endblock %}
