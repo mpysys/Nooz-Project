@@ -4,69 +4,130 @@
 
 
 {% if user.is_authenticated %}
-<div class="card d-flex justify-content-center">
-    <div class="border border-left border-right px-0">
-      <div class="p-3 border-bottom">
-        <h1 class="d-flex align-items-center mb-0">
-          Newsfeed
-        </h1>
-      </div>
-      <div>
-        {% for post in object_list %}
+<div class="container">
+  <div class="card d-flex justify-content-center">
+      <div class="border border-left border-right px-0">
+        <div class="p-3 border-bottom">
+          <h1 class="d-flex align-items-center mb-0">
+            Newsfeed
+          </h1>
+        </div>
         <div>
-          <div class="d-flex p-3 border-bottom">
-            {% if post.author.profile.profile_pic %}
-            <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
+          {% for post in object_list %}
+          <div>
+            <div class="d-flex p-3 border-bottom">
+              {% if post.author.profile.profile_pic %}
+              <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
+                height="50" alt="Avatar" loading="lazy" />
+              {% else %}
+              <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
               height="50" alt="Avatar" loading="lazy" />
-            {% else %}
-            <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
-            height="50" alt="Avatar" loading="lazy" />
-            {% endif %}
-            <div class="d-flex w-100 ps-3">
-              <div>
-                <h6 class="text-body">
-                    <small><a href="{% url 'show_profile_page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
-                    <span class="small text-muted font-weight-normal"> • </span>
-                    <span class="small text-muted font-weight-normal">{{ post.timestamp }}</span>
-                    </small>
-                    {% if user.is_authenticated %}
-                    {% if user.id == post.author.id %}
-                        - <small >
-                            <a href="{% url 'edit_post' post.pk %}">(edit)</a>
-                            <a href="{% url 'delete_post' post.pk %}">(delete)</a>
-                        </small>
-                    {% endif %}
-                    {% endif %}  
-                </h6>
-                <div><strong><a href="{% url 'post-detail' post.pk %}" class="link-dark">{{ post.title}}</a></strong></div>
+              {% endif %}
+              <div class="d-flex w-100 ps-3">
+                <div>
+                  <h6 class="text-body">
+                      <small><a href="{% url 'show_profile_page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                      <span class="small text-muted font-weight-normal"> • </span>
+                      <span class="small text-muted font-weight-normal">{{ post.timestamp }}</span>
+                      </small>
+                      {% if user.is_authenticated %}
+                      {% if user.id == post.author.id %}
+                          - <small >
+                              <a href="{% url 'edit_post' post.pk %}">(edit)</a>
+                              <a href="{% url 'delete_post' post.pk %}">(delete)</a>
+                          </small>
+                      {% endif %}
+                      {% endif %}  
+                  </h6>
+                  <div><strong><a href="{% url 'post-detail' post.pk %}" class="link-dark">{{ post.title}}</a></strong></div>
 
-                <p style="line-height: 1.2;">
-                    {{ post.description }}
-                </p>
-                <ul class="list-unstyled d-flex float-start mb-0 pe-xl-5">
-                  <li><a href="{% url 'category' post.category|slugify|title %}" class="badge bg-secondary mx-1" style="text-decoration: none">{{ post.category }}</a></li>
-                  <li><span class="small ps-2 float-right">Likes: {{ post.total_likes }}</span></li>
-                </ul>
+                  <p style="line-height: 1.2;">
+                      {{ post.description }}
+                  </p>
+                  <ul class="list-unstyled d-flex float-start mb-0 pe-xl-5">
+                    <li><a href="{% url 'category' post.category|slugify|title %}" class="badge bg-secondary mx-1" style="text-decoration: none">{{ post.category }}</a></li>
+                    <li><span class="small ps-2 float-right"><i class="fa-solid fa-thumbs-up"></i> {{ post.total_likes }}</span></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
+      </div>
+  </div>
+</div>
+{% else %}
+  <div class="container-fluid bg-img" title="Center Stage Background">
+    <div class="row p-4">
+      <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-self-center mt-5">
+        <p class="fs-5 mb-4 text-white text-center text-md-start">Welcome to Nooz. A place to read, share,
+          comment about Business, Tech, Sports, Gaming, Hikes & Food and Beverages. This is a community of
+          people who love to travel and discover new things.
+        </p>
+        <div class="gap-3 d-flex justify-content-center justify-content-md-start">
+            <a href="{% url 'register' %}" role="button" class="btn btn-secondary btn-lg px-4 me-sm-3 fw-bold">
+                Sign Up
+            </a>
+            <a href="{% url 'login' %}" role="button" class="btn btn-outline-light btn-lg px-4 fw-bold">
+                Login
+            </a>
+        </div>
       </div>
     </div>
   </div>
-  {% else %}
-  <p class="fs-5 mb-4 text-white text-center text-md-start">Welcome to Fungi News. A place to get the
-    latest update and trendy news about NFT, where you also have the opportunity to share your NFT
-    enthusiasm with others like you.
-</p>
-<div class="gap-3 d-flex justify-content-center justify-content-md-start">
-    <a href="{% url 'register' %}" role="button" class="btn btn-info btn-lg px-4 me-sm-3 fw-bold">
-        Sign Up
-    </a>
-    <a href="{% url 'login' %}" role="button" class="btn btn-outline-light btn-lg px-4 fw-bold">
-        Login
-    </a>
-</div>
+  <div class="container">
+    <div class="card d-flex justify-content-center">
+        <div class="border border-left border-right px-0">
+          <div class="p-3 border-bottom">
+            <h1 class="d-flex align-items-center mb-0">
+              Newsfeed
+            </h1>
+          </div>
+          <div>
+            {% for post in object_list %}
+            <div>
+              <div class="d-flex p-3 border-bottom">
+                {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
+                  height="50" alt="Avatar" loading="lazy" />
+                {% else %}
+                <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+                height="50" alt="Avatar" loading="lazy" />
+                {% endif %}
+                <div class="d-flex w-100 ps-3">
+                  <div>
+                    <h6 class="text-body">
+                        <small><a href="{% url 'show_profile_page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                        <span class="small text-muted font-weight-normal"> • </span>
+                        <span class="small text-muted font-weight-normal">{{ post.timestamp }}</span>
+                        </small>
+                        {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                            - <small >
+                                <a href="{% url 'edit_post' post.pk %}">(edit)</a>
+                                <a href="{% url 'delete_post' post.pk %}">(delete)</a>
+                            </small>
+                        {% endif %}
+                        {% endif %}  
+                    </h6>
+                    <div><strong><a href="{% url 'post-detail' post.pk %}" class="link-dark">{{ post.title}}</a></strong></div>
+
+                    <p style="line-height: 1.2;">
+                        {{ post.description }}
+                    </p>
+                    <ul class="list-unstyled d-flex float-start mb-0 pe-xl-5">
+                      <li><a href="{% url 'category' post.category|slugify|title %}" class="badge bg-secondary mx-1" style="text-decoration: none">{{ post.category }}</a></li>
+                      <li><span class="small ps-2 float-right"><i class="fa-solid fa-thumbs-up"></i> {{ post.total_likes }}</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+  </div>
 {% endif %}
 {% endblock %}

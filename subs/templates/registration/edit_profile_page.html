@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Edit Profile Page{% endblock %}
 {% block content %}
-
+<br/>
+<div class="container">
 {% if user.is_authenticated %}
     {% if user.id == profile.user.id %}
         <h1>Edit Your Profile Page</h1>
@@ -25,5 +26,5 @@
 User permission denied
 
 {% endif %}
-
+</div>
 {% endblock %}

@@ -4,7 +4,8 @@
 
 
 {% block content %}
-
+<br/>
+<div class="container">
     <h1>{{ post.title }}</h1>
         <small>By: 
             {{ post.author.first_name }} 
@@ -107,6 +108,7 @@
       <hr>
     {% endfor %}
 {% endif %}
+</div>
 
 <br/><br/>
 <br/><br/>

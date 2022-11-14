@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Delete the post{% endblock %}
 {% block content %}
-
+<br/>
+<div class="container">
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
         <h1>Delete Post...</h1>
@@ -25,5 +26,5 @@
 User permission denied
 
 {% endif %}
-
+</div>
 {% endblock %}

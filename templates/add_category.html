@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Add a new article category{% endblock %}
 {% block content %}
-
+<br/>
+<div class="container">
 {% if user.is_authenticated %}
 <h1>Add a New Category...</h1>
 <div class="form-group">
@@ -17,5 +18,5 @@
 User permission denied
 
 {% endif %}
-
+</div>
 {% endblock %}

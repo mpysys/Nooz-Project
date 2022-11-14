@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Create a new profile{% endblock %}
 {% block content %}
-
+<br/>
+<div class="container">
 {% if user.is_authenticated %}
 <h1>Create your profile page</h1>
 <div class="form-group">
@@ -18,5 +19,5 @@
 User permission denied
 
 {% endif %}
-
+</div>
 {% endblock %}
