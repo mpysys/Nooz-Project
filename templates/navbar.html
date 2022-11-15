@@ -23,14 +23,17 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'new_post' %}">Add Post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-        </li>
-        
-      {% else %}
+          {% if user.profile.id %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'new_post' %}">Add Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+          </li>
+          {% else %}
+          <a class="nav-link dropdown-item" href="{% url 'create_profile_page' %}">Create Profile to Post</a>
+          {% endif %}
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
@@ -48,7 +51,7 @@
             <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle border"
             height="25" width= "25" alt="Avatar" loading="lazy" />
           {% else %}
-            <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+            <img src="{% static 'images/generic_pic.png' %}" class="rounded-circle border"
             height="25" with="25" alt="Avatar" loading="lazy" />
           {% endif %}
             {{ user.username}}

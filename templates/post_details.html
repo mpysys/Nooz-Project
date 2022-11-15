@@ -56,7 +56,7 @@
         {% if post.author.profile.profile_pic %}
           <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start" height="100" width="100">
         {% else %}
-          <img src="{% static '/images/generic_pic.png' %}" class="img-fluid rounded-start">
+          <img src="{% static 'images/generic_pic.png' %}" class="img-fluid rounded-start">
         {% endif %}
       </div>
       <div class="col-md-10">

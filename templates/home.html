@@ -20,9 +20,10 @@
               <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
                 height="50" width="50" alt="Avatar" loading="lazy" />
               {% else %}
-              <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+              <img src="{% static 'images/generic_pic.png' %}" class="rounded-circle border"
               height="50" width="50" alt="Avatar" loading="lazy" />
               {% endif %}
+              {% if post.author.profile %}
               <div class="d-flex w-100 ps-3">
                 <div>
                   <h6 class="text-body">
@@ -49,6 +50,7 @@
                     <li><span class="small ps-2 float-right"><i class="fa-solid fa-thumbs-up"></i> {{ post.total_likes }}</span></li>
                   </ul>
                 </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -92,7 +94,7 @@
                 <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle border"
                   height="50" width="50" alt="Avatar" loading="lazy" />
                 {% else %}
-                <img src="{% static '/images/generic_pic.png' %}" class="rounded-circle border"
+                <img src="{% static 'images/generic_pic.png' %}" class="rounded-circle border"
                 height="50" width="50" alt="Avatar" loading="lazy" />
                 {% endif %}
                 <div class="d-flex w-100 ps-3">
