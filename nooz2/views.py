@@ -78,6 +78,14 @@ class NewPostView(CreateView):
         context = super(NewPostView, self).get_context_data(*args, **kwargs)
         context ["category_menu"] = category_menu
         return context
+    
+    def get_success_url(self):
+        return reverse('post-detail', args=[self.object.pk])
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        # will save the form and redirect to the success_url
+        return super().form_valid(form)
 
 
 class AddCommentView(CreateView):
@@ -85,11 +93,14 @@ class AddCommentView(CreateView):
     form_class = CommentForm
     template_name = 'add_comment.html'
     #fields = '__all__'
-    success_url = reverse_lazy("home")
+    #success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.kwargs['pk']})
 
 
 #add a category view
@@ -116,6 +127,15 @@ class EditPostView(UpdateView):
             context = super(EditPostView, self).get_context_data(*args, **kwargs)
             context ["category_menu"] = category_menu
             return context
+
+    def get_success_url(self):
+        return reverse('post-detail', args=[self.object.pk])
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        # will save the form and redirect to the success_url
+        return super().form_valid(form)
+
 
 #delete a post view
 class DeletePostView(DeleteView):

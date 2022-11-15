@@ -30,6 +30,7 @@ class Post(models.Model):
         return reverse('home')
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
@@ -63,3 +64,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
+
+ 
