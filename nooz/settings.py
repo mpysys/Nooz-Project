@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-mpysys-noozproject-vkhc75dfu7v.ws-eu75.gitpod.io']
-ALLOWED_HOSTS = ['localhost', '.gitpod.io', 'nooz-site.herokuapp.com']
+ALLOWED_HOSTS = ['nooz-site.herokuapp.com']
 
 # Application definition
 
