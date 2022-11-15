@@ -1,1 +1,1 @@
-web: gunicorn nooz.wsg
+web: gunicorn nooz.wsgi
