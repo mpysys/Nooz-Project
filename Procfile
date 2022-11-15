@@ -1,1 +1,1 @@
-web: gunicorn nooz-project.wsg
+web: gunicorn nooz.wsg
