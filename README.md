@@ -326,9 +326,6 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 
 ## Credits 
 
-### Content
-- Most recipes were taken from [BBC GoodFood](https://www.bbcgoodfood.com/ "Link BBC GoodFood website")'. 
-
 ### Media
 - The images have been sourced from [Adobe Stock](https://stock.adobe.com/).
 
@@ -339,6 +336,7 @@ References used:
 - [Colorlib](https://colorlib.com/ "Link to Colorlib page")
 - [Django Docs](https://docs.djangoproject.com/ "Link to Django's Docs")
 - [Github](https://github.com/ "Link to Github")
+- [Codemy](https://codemy.com/ "Link to Codemy")
 
 ### Other
 - [Codemy](https://www.youtube.com/@Codemycom "Link to Codemy Youtube")
